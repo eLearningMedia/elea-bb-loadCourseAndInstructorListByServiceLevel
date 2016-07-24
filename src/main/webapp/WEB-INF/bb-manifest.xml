@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin https://maven.blackboard.com/content/repositories/releases/blackboard/platform/bb-manifest-plugin/9.1.110082.0/bb-manifest-plugin-9.1.110082.0.xsd">
+	<plugin>
+
+		<name value="Test Load Instructors" />
+		<handle value="testLoadInstructors" />
+		<description value="Test loading instructors with CourseDbLoader" />
+		<default-locale value="en_US" />
+
+		<version value="1.0" />
+		<requires>
+			<bbversion value="9.1.201404.160205" />
+		</requires>
+
+		<vendor>
+			<id value="elea" />
+			<name value="eLearning Media" />
+			<url value="http://www.elearningsolutions.es/" />
+			<description value="eLearning Media" />
+		</vendor>
+
+		<application-defs>
+	    <application handle="load-instructors" type="course_only" use-ssl="true" 
+	    	name="Test Load Instructors" can-allow-guest="false">
+	        <description lang="en_US">Test loading instructors with CourseDbLoader</description>
+	        <links>
+	            <link>
+	                <type value="course_tool"/>
+	                <name value="Test Load Instructors"/>
+	                <url value="controller/index" />
+	                <description value="Test loading instructors with CourseDbLoader" />
+	            </link>
+	        </links>
+	    </application>
+	</application-defs>
+
+		<!-- Code permissions required for proper operation -->
+		<permissions>
+			<permission type="attribute" name="user.authinfo" actions="get" />
+			<permission type="attribute" name="user.personalinfo"
+				actions="get,set" />
+			<permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;"
+				actions="read,write,delete,execute" />
+			<permission type="socket" name="*" actions="connect,resolve" />
+
+			<permission type="java.util.logging.LoggingPermission"
+				name="control" actions="" />
+
+			<!-- We need these permissions to allow Spring to auto-discover -->
+			<!-- and wire beans together and Hibernate to interact with objects. -->
+
+			<permission type="java.lang.reflect.ReflectPermission"
+				name="suppressAccessChecks" />
+			<permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />
+			<permission type="java.lang.RuntimePermission" name="createClassLoader" />
+			<permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
+			<permission type="java.lang.RuntimePermission" name="getProtectionDomain" />
+			<permission type="java.io.FilePermission" name="${java.home}/lib/*"
+				actions="read" />
+				
+		</permissions>
+
+	</plugin>
+</manifest>
